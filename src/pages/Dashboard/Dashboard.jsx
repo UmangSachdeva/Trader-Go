@@ -7,15 +7,17 @@ import StockNews from "@/components/Dashboard/StockNews";
 export default function Dashboard() {
   const [currentTime, setCurrentTime] = useState(new Date());
 
+  // Random comments
+
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">Stock Dashboard</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="container p-4 mx-auto">
+      <h1 className="mb-6 text-3xl font-bold">Stock Dashboard</h1>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {/* Watchlist */}
         <Wishlist />
 
@@ -34,7 +36,7 @@ export default function Dashboard() {
             {marketIndices.map((index) => (
               <div
                 key={index.name}
-                className="flex justify-between items-center mb-4"
+                className="flex items-center justify-between mb-4"
               >
                 <p className="font-semibold">{index.name}</p>
                 <div className="text-right">
@@ -72,11 +74,11 @@ export default function Dashboard() {
                 <TabsTrigger value="sell">Sell</TabsTrigger>
               </TabsList>
               <TabsContent value="all">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {recentTransactions.map((transaction, index) => (
                     <div
                       key={index}
-                      className="flex justify-between items-center p-4 bg-gray-100 rounded-lg"
+                      className="flex items-center justify-between p-4 bg-gray-100 rounded-lg"
                     >
                       <div>
                         <Badge
@@ -86,7 +88,7 @@ export default function Dashboard() {
                         >
                           {transaction.type}
                         </Badge>
-                        <p className="font-semibold mt-2">
+                        <p className="mt-2 font-semibold">
                           {transaction.symbol}
                         </p>
                         <p className="text-sm text-gray-500">
@@ -101,17 +103,17 @@ export default function Dashboard() {
                 </div>
               </TabsContent>
               <TabsContent value="buy">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {recentTransactions
                     .filter((t) => t.type === "Buy")
                     .map((transaction, index) => (
                       <div
                         key={index}
-                        className="flex justify-between items-center p-4 bg-gray-100 rounded-lg"
+                        className="flex items-center justify-between p-4 bg-gray-100 rounded-lg"
                       >
                         <div>
                           <Badge>Buy</Badge>
-                          <p className="font-semibold mt-2">
+                          <p className="mt-2 font-semibold">
                             {transaction.symbol}
                           </p>
                           <p className="text-sm text-gray-500">
@@ -126,17 +128,17 @@ export default function Dashboard() {
                 </div>
               </TabsContent>
               <TabsContent value="sell">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {recentTransactions
                     .filter((t) => t.type === "Sell")
                     .map((transaction, index) => (
                       <div
                         key={index}
-                        className="flex justify-between items-center p-4 bg-gray-100 rounded-lg"
+                        className="flex items-center justify-between p-4 bg-gray-100 rounded-lg"
                       >
                         <div>
                           <Badge variant="secondary">Sell</Badge>
-                          <p className="font-semibold mt-2">
+                          <p className="mt-2 font-semibold">
                             {transaction.symbol}
                           </p>
                           <p className="text-sm text-gray-500">
